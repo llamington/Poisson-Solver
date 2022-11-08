@@ -36,35 +36,35 @@ impl<'a> PoissonSolver<'a> {
                         let mut v: f32 = 0.0;
 
                         if i == 0 {
-                            v += 2.0 * (*self.curr)[tensor_idx!(1, j, k, self.size)];
+                            v += 2.0 * self.curr[tensor_idx!(1, j, k, self.size)];
                         } else if i == self.size - 1 {
-                            v += 2.0 * (*self.curr)[tensor_idx!(self.size - 2, j, k, self.size)];
+                            v += 2.0 * self.curr[tensor_idx!(self.size - 2, j, k, self.size)];
                         } else {
-                            v += (*self.curr)[tensor_idx!(i - 1, j, k, self.size)];
-                            v += (*self.curr)[tensor_idx!(i + 1, j, k, self.size)];
+                            v += self.curr[tensor_idx!(i - 1, j, k, self.size)];
+                            v += self.curr[tensor_idx!(i + 1, j, k, self.size)];
                         }
 
                         if j == 0 {
-                            v += 2.0 * (*self.curr)[tensor_idx!(i, 1, k, self.size)];
+                            v += 2.0 * self.curr[tensor_idx!(i, 1, k, self.size)];
                         } else if j == self.size - 1 {
-                            v += 2.0 * (*self.curr)[tensor_idx!(i, self.size - 2, k, self.size)];
+                            v += 2.0 * self.curr[tensor_idx!(i, self.size - 2, k, self.size)];
                         } else {
-                            v += (*self.curr)[tensor_idx!(i, j - 1, k, self.size)];
-                            v += (*self.curr)[tensor_idx!(i, j + 1, k, self.size)];
+                            v += self.curr[tensor_idx!(i, j - 1, k, self.size)];
+                            v += self.curr[tensor_idx!(i, j + 1, k, self.size)];
                         }
 
                         if k == 0 {
-                            v += 2.0 * (*self.curr)[tensor_idx!(i, j, 1, self.size)];
+                            v += 2.0 * self.curr[tensor_idx!(i, j, 1, self.size)];
                         } else if k == self.size - 1 {
-                            v += 2.0 * (*self.curr)[tensor_idx!(i, j, self.size - 2, self.size)];
+                            v += 2.0 * self.curr[tensor_idx!(i, j, self.size - 2, self.size)];
                         } else {
-                            v += (*self.curr)[tensor_idx!(i, j, k - 1, self.size)];
-                            v += (*self.curr)[tensor_idx!(i, j, k + 1, self.size)];
+                            v += self.curr[tensor_idx!(i, j, k - 1, self.size)];
+                            v += self.curr[tensor_idx!(i, j, k + 1, self.size)];
                         }
 
                         v -= self.delta * self.delta * self.source[tensor_idx!(i, j, k, self.size)];
                         v /= 6.0;
-                        (*self.next)[tensor_idx!(i, j, k, self.size)] = v;
+                        self.next[tensor_idx!(i, j, k, self.size)] = v;
                     }
                 }
             }

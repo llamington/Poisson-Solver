@@ -39,8 +39,10 @@ fn main() -> ExitCode {
             .get(),
         Some(t) => t,
     };
+    // Initialise volume
     let mut source: Vec<f32> = vec![0.0; size * size * size];
     source[util::tensor_idx!(size / 2, size / 2, size / 2, size)] = 1.0;
+
     let mut poisson_solver =
         poisson_solver::PoissonSolver::new(size, &source, iterations, threads, DELTA);
     let solution = poisson_solver.solve();
