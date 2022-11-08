@@ -2,7 +2,8 @@ use std::process::ExitCode;
 
 use clap::Parser;
 
-// mod util;
+mod poisson_solver;
+// use poisson_solver::PoissonSolver;
 mod util;
 
 /// Program for solving a 3D discrete form of the Poisson Equation
@@ -34,5 +35,6 @@ fn main() -> ExitCode {
     }
     let mut source: Vec<f32> = vec![0.0; size * size * size];
     source[util::tensor_idx!(size / 2, size / 2, size / 2, size)] = 1.0;
+    let poisson_solver = poisson_solver::PoissonSolver::new(size, &source, iterations, threads, delta)
     return ExitCode::SUCCESS;
 }
