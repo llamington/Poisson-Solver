@@ -24,7 +24,7 @@ PoissonSolver::PoissonSolver(int n,
   omp_set_num_threads(threads);
 }
 
-std::vector<float> PoissonSolver::solve(void)
+std::vector<float> *PoissonSolver::solve(void)
 {
   auto time_start = std::chrono::high_resolution_clock::now();
 
@@ -388,5 +388,5 @@ std::vector<float> PoissonSolver::solve(void)
   }
 
   delete next;
-  return *curr;
+  return curr;
 }

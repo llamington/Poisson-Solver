@@ -92,9 +92,10 @@ int main(int argc, char *argv[])
     for (int x = 0; x < n; ++x)
     {
         for (int y = 0; y < n; ++y)
-            std::cout << result[TENSOR_IDX(n / 2, y, x, n)] << " ";
+            std::cout << (*result)[TENSOR_IDX(n / 2, y, x, n)] << " ";
 
         std::cout << std::endl;
     }
+    delete result;
     return EXIT_SUCCESS;
 }

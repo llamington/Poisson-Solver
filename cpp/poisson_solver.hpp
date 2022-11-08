@@ -40,7 +40,7 @@ public:
      * @brief Solves Poisson's equation using Jacobi Relaxation
      * @return Field after the specified number of iterations
      */
-    std::vector<float> solve(void);
+    std::vector<float> *solve(void);
 };
 
 #endif
