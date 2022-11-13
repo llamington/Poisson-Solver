@@ -34,9 +34,12 @@ fn main() -> ExitCode {
         return ExitCode::FAILURE;
     }
     let threads = match threads {
-        None => std::thread::available_parallelism()
-            .expect("Parallelism data unavailable. Please manually input a thread count")
-            .get(),
+        None => {
+            std::thread::available_parallelism()
+                .expect("Parallelism data unavailable. Please manually input a thread count")
+                .get()
+                - 3
+        }
         Some(t) => t,
     };
     // Initialise volume
